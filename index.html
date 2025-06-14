@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-lang-key="title">
+      日本の手取り計算機 | 日本の税金計算 | 日本の給与計算
+    </title>
+    <meta
+      name="description"
+      content="日本の給与の手取り額を素早く正確に計算します。所得税、住民税、社会保険料を自動反映。給与所得者・事業所得者対応。再計算に便利な入力値保存機能付き。"
+    />
+    <meta
+      name="keywords"
+      content="日本手取り, 日本給与, 日本税金, 日本所得税, 日本住民税, 日本社会保険, 日本手取り計算, 日本給与計算機, 個人事業主, 自営業, 国民健康保険, 国民年金, Japanese net salary, Japan tax calculation"
+    />
+    <meta name="author" content="Your Name/Service Name" />
+    <link rel="canonical" href="https://jpnincome.netlify.app/" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTcgMkgxN0MxOC42NTY5IDIgMjAgMy4zNDMxNSAyMCA1VjE5QzIwIDIwLjY1NjkgMTguNjU2OSAyMiAxNyAyMkg3QzUuMzQzMTUgMjIgNCAyMC42NTY5IDQgMTlWNUM0IDMuMzQzMTUgNS4zNDMxNSAyIDcgMloiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGgGQIJMOCAxMEg4LjAxIiBzdHJva2U9IiMzMzMiIH50cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9IkMxMiAxMEgxMi4wMSIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik0xNiAxMEgxNi4wMSIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik04IDE0SDA4LjAxIiBzdHJva2U9IiMzMzMiIH50cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik0xMiAxNEgxMi4wMSIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik0xNiAxNEgxNi4wMSIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik04IDE4SDA4LjAxIiBzdHJva2U9IiMzMzMiIH50cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9IkMxMiAxOEgxMi4wMSIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik0xNiAxOEgxNi4wMSIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjwvZ3N2Pg=="
+    />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8f8f8; /* Light gray background */
+        color: #333;
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 800px;
+      }
+      input[type="number"]::-webkit-outer-spin-button,
+      input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      input[type="number"] {
+        -moz-appearance: textfield; /* Firefox */
+      }
+    </style>
+  </head>
+  <body class="p-4 sm:p-6 md:p-8 flex flex-col items-center min-h-screen">
+    <header class="w-full text-center py-6">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-2">
+        <span class="text-blue-600" data-lang-key="header.japan">日本</span>
+        <span data-lang-key="header.title">手取り計算機</span>
+      </h1>
+      <p
+        class="text-md sm:text-lg text-gray-600"
+        data-lang-key="header.description"
+      >
+        あなたの給与、実際にいくら手元に残るでしょうか？今すぐ確認しましょう。
+      </p>
+    </header>
+
+    <main
+      class="w-full container bg-white p-6 sm:p-8 md:p-10 rounded-xl shadow-lg mb-8"
+    >
+      <!-- Language Selector -->
+      <div class="mb-6 flex justify-end">
+        <select
+          id="languageSelect"
+          class="p-2 border border-gray-300 rounded-md"
+        >
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+
+      <!-- Income Type Selector -->
+      <div class="mb-6">
+        <label
+          for="incomeType"
+          class="block text-gray-700 text-lg sm:text-xl font-semibold mb-2"
+          data-lang-key="incomeType.label"
+        >
+          所得の種類
+        </label>
+        <select
+          id="incomeType"
+          class="w-full p-3 sm:p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-lg sm:text-xl"
+        >
+          <option value="employee" data-lang-key="incomeType.employee">
+            給与所得者
+          </option>
+          <option
+            value="self_employed"
+            data-lang-key="incomeType.self_employed"
+          >
+            事業所得者（個人事業主）
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-6">
+        <label
+          for="grossSalary"
+          class="block text-gray-700 text-lg sm:text-xl font-semibold mb-2"
+        >
+          <span id="grossSalaryLabel" data-lang-key="grossSalary.label.employee"
+            >額面給与（月額）</span
+          >
+          <span class="text-gray-500 text-sm">（円）</span>
+        </label>
+        <input
+          type="number"
+          id="grossSalary"
+          class="w-full p-3 sm:p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-lg sm:text-xl"
+          placeholder="例: 300000"
+          min="0"
+        />
+      </div>
+
+      <!-- Necessary Expenses (for Self-Employed) -->
+      <div id="necessaryExpensesGroup" class="mb-6 hidden">
+        <label
+          for="necessaryExpenses"
+          class="block text-gray-700 text-lg sm:text-xl font-semibold mb-2"
+          data-lang-key="necessaryExpenses.label"
+        >
+          必要経費（月額） <span class="text-gray-500 text-sm">（円）</span>
+        </label>
+        <input
+          type="number"
+          id="necessaryExpenses"
+          class="w-full p-3 sm:p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-lg sm:text-xl"
+          placeholder="例: 50000"
+          min="0"
+        />
+        <p
+          class="text-sm text-gray-500 mt-1"
+          data-lang-key="necessaryExpenses.description"
+        >
+          売上から差し引かれる経費の月額を入力してください。
+        </p>
+      </div>
+
+      <div class="mb-8">
+        <label
+          for="age"
+          class="block text-gray-700 text-lg sm:text-xl font-semibold mb-2"
+          data-lang-key="age.label"
+        >
+          年齢 <span class="text-gray-500 text-sm">（満年齢）</span>
+        </label>
+        <input
+          type="number"
+          id="age"
+          class="w-full p-3 sm:p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-lg sm:text-xl"
+          placeholder="例: 30"
+          min="0"
+          max="120"
+        />
+        <p class="text-sm text-gray-500 mt-1" data-lang-key="age.description">
+          満40歳以上の場合、介護保険料が適用されます。（国民健康保険にも適用）
+        </p>
+      </div>
+
+      <!-- Calculation Results -->
+      <div
+        id="results"
+        class="bg-blue-50 p-6 rounded-lg border border-blue-200"
+      >
+        <h2
+          class="text-2xl sm:text-3xl font-bold text-blue-800 mb-4"
+          data-lang-key="results.title"
+        >
+          計算結果
+        </h2>
+        <div class="text-lg sm:text-xl mb-3">
+          <span
+            class="font-semibold text-gray-700"
+            data-lang-key="results.netSalary"
+            >手取り額（月額）：</span
+          >
+          <span id="netSalary" class="font-bold text-green-700 ml-2">0 円</span>
+        </div>
+        <div class="border-t border-blue-200 pt-4 mt-4">
+          <h3
+            class="text-xl sm:text-2xl font-semibold text-blue-700 mb-3"
+            data-lang-key="results.deductionsDetail"
+          >
+            控除額詳細
+          </h3>
+          <ul class="space-y-2 text-md sm:text-lg" id="deductionsList">
+            <!-- Dynamic content will be inserted here by JavaScript -->
+          </ul>
+          <div class="mt-4">
+            <span
+              class="font-semibold text-gray-700"
+              data-lang-key="results.totalDeductions"
+              >控除合計額：</span
+            >
+            <span id="totalDeductions" class="font-bold text-red-600 ml-2"
+              >0 円</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="mt-8 p-4 bg-yellow-50 rounded-lg border border-yellow-200 text-yellow-800 text-sm sm:text-base"
+      >
+        <p class="font-semibold mb-2" data-lang-key="disclaimer.important">
+          💡 重要なお知らせ：
+        </p>
+        <p data-lang-key="disclaimer.content">
+          この計算機は、一般的な所得税率、社会保険料率、および標準的な控除額に基づいて**推定値**を提供します。
+          実際の税金および社会保険料は、お住まいの地域、家族構成、追加控除の有無、前年度の所得など、様々な要因によって変動する可能性があります。
+          特に国民健康保険料は市区町村によって大きく異なります。
+          正確な計算については、専門家にご相談いただくか、公式の給与明細や確定申告書をご参照ください。
+        </p>
+      </div>
+    </main>
+
+    <footer class="w-full text-center py-6 text-gray-500 text-sm">
+      <p>&copy; 2025 Japan Net Salary Calculator. All rights reserved.</p>
+      <p data-lang-key="footer.disclaimer">
+        本サービスは情報提供を目的としており、法的または財務的な助言に代わるものではありません。
+      </p>
+    </footer>
+
+    <script>
+      // DOM 要素を取得
+      const languageSelect = document.getElementById("languageSelect");
+      const incomeTypeSelect = document.getElementById("incomeType");
+      const grossSalaryInput = document.getElementById("grossSalary");
+      const grossSalaryLabel = document.getElementById("grossSalaryLabel");
+      const necessaryExpensesGroup = document.getElementById(
+        "necessaryExpensesGroup"
+      );
+      const necessaryExpensesInput =
+        document.getElementById("necessaryExpenses");
+      const ageInput = document.getElementById("age");
+      const netSalarySpan = document.getElementById("netSalary");
+      const totalDeductionsSpan = document.getElementById("totalDeductions");
+      const deductionsList = document.getElementById("deductionsList");
+
+      // 多言語対応用の翻訳データ
+      const translations = {
+        ja: {
+          title: "日本の手取り計算機 | 日本の税金計算 | 日本の給与計算",
+          "header.japan": "日本",
+          "header.title": "手取り計算機",
+          "header.description":
+            "あなたの給与、実際にいくら手元に残るでしょうか？今すぐ確認しましょう。",
+          "incomeType.label": "所得の種類",
+          "incomeType.employee": "給与所得者",
+          "incomeType.self_employed": "事業所得者（個人事業主）",
+          "grossSalary.label.employee": "額面給与（月額）",
+          "grossSalary.label.self_employed": "売上（月額）",
+          "necessaryExpenses.label": "必要経費（月額）",
+          "necessaryExpenses.description":
+            "売上から差し引かれる経費の月額を入力してください。",
+          "age.label": "年齢",
+          "age.description":
+            "満40歳以上の場合、介護保険料が適用されます。（国民健康保険にも適用）",
+          "results.title": "計算結果",
+          "results.netSalary": "手取り額（月額）：",
+          "results.deductionsDetail": "控除額詳細",
+          "deductions.socialInsuranceTotal": "社会保険料合計：",
+          "deductions.healthInsurance": "・ 健康保険料：",
+          "deductions.pensionInsurance": "・ 厚生年金保険料：",
+          "deductions.employmentInsurance": "・ 雇用保険料：",
+          "deductions.longTermCareInsurance": "・ 介護保険料（満40歳以上）：",
+          "deductions.nationalHealthInsurance": "・ 国民健康保険料：",
+          "deductions.nationalPension": "・ 国民年金保険料：",
+          "deductions.incomeTax": "所得税（月額）：",
+          "deductions.residentTax": "住民税（月額）：",
+          "results.totalDeductions": "控除合計額：",
+          "disclaimer.important": "💡 重要なお知らせ：",
+          "disclaimer.content":
+            "この計算機は、一般的な所得税率、社会保険料率、および標準的な控除額に基づいて**推定値**を提供します。実際の税金および社会保険料は、お住まいの地域、家族構成、追加控除の有無、前年度の所得など、様々な要因によって変動する可能性があります。特に国民健康保険料は市区町村によって大きく異なります。正確な計算については、専門家にご相談いただくか、公式の給与明細や確定申告書をご参照ください。",
+          "footer.disclaimer":
+            "本サービスは情報提供を目的としており、法的または財務的な助言に代わるものではありません。",
+        },
+        ko: {
+          title: "일본 실수령 계산기 | 일본 세금 계산 | 일본 월급 계산",
+          "header.japan": "일본",
+          "header.title": "실수령 계산기",
+          "header.description":
+            "당신의 월급, 실제로 얼마를 받게 될까요? 지금 바로 확인해보세요.",
+          "incomeType.label": "소득 종류",
+          "incomeType.employee": "근로소득자",
+          "incomeType.self_employed": "사업소득자 (개인사업자)",
+          "grossSalary.label.employee": "세전 급여 (월)",
+          "grossSalary.label.self_employed": "매출 (월)",
+          "necessaryExpenses.label": "필요 경비 (월)",
+          "necessaryExpenses.description":
+            "매출에서 공제되는 경비의 월별 금액을 입력하세요.",
+          "age.label": "나이",
+          "age.description":
+            "만 40세 이상 시 개호보험료가 적용됩니다. (국민건강보험에도 적용)",
+          "results.title": "계산 결과",
+          "results.netSalary": "실수령액 (월):",
+          "results.deductionsDetail": "공제액 상세",
+          "deductions.socialInsuranceTotal": "사회보험료 총액:",
+          "deductions.healthInsurance": "・ 건강보험료:",
+          "deductions.pensionInsurance": "・ 후생연금보험료:",
+          "deductions.employmentInsurance": "・ 고용보험료:",
+          "deductions.longTermCareInsurance": "・ 개호보험료 (만 40세 이상):",
+          "deductions.nationalHealthInsurance": "・ 국민건강보험료:",
+          "deductions.nationalPension": "・ 국민연금보험료:",
+          "deductions.incomeTax": "소득세 (월):",
+          "deductions.residentTax": "주민세 (월):",
+          "results.totalDeductions": "총 공제액:",
+          "disclaimer.important": "💡 중요 안내:",
+          "disclaimer.content":
+            "이 계산기는 일반적인 소득세율, 사회보험료율, 그리고 표준 공제액을 기반으로 **추정치**를 제공합니다. 실제 세금 및 사회보험료는 거주 지역, 가족 구성, 추가 공제 여부, 전년도 소득 등 다양한 요인에 따라 달라질 수 있습니다. 특히 국민건강보험료는 시구정촌에 따라 크게 다릅니다. 정확한 계산을 위해서는 전문가와 상담하시거나, 공식 급여명세서 또는 확정신고서를 참고하시기 바랍니다.",
+          "footer.disclaimer":
+            "본 서비스는 정보 제공을 목적으로 하며, 법적 또는 재정적 조언을 대체하지 않습니다.",
+        },
+        en: {
+          title:
+            "Japan Net Salary Calculator | Japan Tax Calculation | Japan Salary Calculation",
+          "header.japan": "Japan",
+          "header.title": "Net Salary Calculator",
+          "header.description":
+            "What will your Japanese salary actually be after deductions? Find out now.",
+          "incomeType.label": "Income Type",
+          "incomeType.employee": "Employee",
+          "incomeType.self_employed": "Self-Employed (Sole Proprietor)",
+          "grossSalary.label.employee": "Gross Salary (Monthly)",
+          "grossSalary.label.self_employed": "Revenue (Monthly)",
+          "necessaryExpenses.label": "Necessary Expenses (Monthly)",
+          "necessaryExpenses.description":
+            "Enter the monthly amount of expenses deducted from your revenue.",
+          "age.label": "Age",
+          "age.description":
+            "Long-term care insurance applies if you are 40 years or older. (Also applies to National Health Insurance)",
+          "results.title": "Calculation Results",
+          "results.netSalary": "Net Salary (Monthly):",
+          "results.deductionsDetail": "Deduction Details",
+          "deductions.socialInsuranceTotal": "Total Social Insurance:",
+          "deductions.healthInsurance": "・ Health Insurance:",
+          "deductions.pensionInsurance": "・ Employees' Pension Insurance:",
+          "deductions.employmentInsurance": "・ Employment Insurance:",
+          "deductions.longTermCareInsurance":
+            "・ Long-Term Care Insurance (40+):",
+          "deductions.nationalHealthInsurance": "・ National Health Insurance:",
+          "deductions.nationalPension": "・ National Pension:",
+          "deductions.incomeTax": "Income Tax (Monthly):",
+          "deductions.residentTax": "Resident Tax (Monthly):",
+          "results.totalDeductions": "Total Deductions:",
+          "disclaimer.important": "💡 Important Notice:",
+          "disclaimer.content":
+            "This calculator provides an **estimation** based on general income tax rates, social insurance rates, and standard deductions. Actual taxes and social insurance premiums can vary due to various factors such as your residential area, family structure, additional deductions, and previous year's income. National Health Insurance premiums, in particular, vary significantly by municipality. For accurate calculations, please consult a professional or refer to your official payslip or tax return documents.",
+          "footer.disclaimer":
+            "This service is for informational purposes only and does not constitute legal or financial advice.",
+        },
+      };
+
+      let currentLang = "ja"; // Default language
+
+      // Function to update text content based on selected language
+      function applyLanguage(lang) {
+        currentLang = lang;
+        document.querySelectorAll("[data-lang-key]").forEach((element) => {
+          const key = element.getAttribute("data-lang-key");
+          if (translations[lang] && translations[lang][key]) {
+            // For title tag, directly set textContent. For other elements, set data-lang-key first.
+            if (element.tagName === "TITLE") {
+              element.textContent = translations[lang][key];
+            } else if (element.tagName === "OPTION") {
+              element.textContent = translations[lang][key];
+            } else {
+              element.textContent = translations[lang][key];
+            }
+          }
+        });
+        // Update specific labels that change based on income type
+        updateGrossSalaryLabel();
+        // Recalculate to update dynamic deduction list
+        calculateNetSalary();
+      }
+
+      // ローカルストレージから値をロード
+      function loadFromLocalStorage() {
+        const savedGrossSalary = localStorage.getItem("grossSalary");
+        const savedAge = localStorage.getItem("age");
+        const savedIncomeType = localStorage.getItem("incomeType");
+        const savedNecessaryExpenses =
+          localStorage.getItem("necessaryExpenses");
+        const savedLang = localStorage.getItem("language");
+
+        if (savedGrossSalary) {
+          grossSalaryInput.value = savedGrossSalary;
+        }
+        if (savedAge) {
+          ageInput.value = savedAge;
+        }
+        if (savedIncomeType) {
+          incomeTypeSelect.value = savedIncomeType;
+        }
+        if (savedNecessaryExpenses) {
+          necessaryExpensesInput.value = savedNecessaryExpenses;
+        }
+        if (savedLang) {
+          languageSelect.value = savedLang;
+          applyLanguage(savedLang); // Apply saved language
+        } else {
+          applyLanguage(currentLang); // Apply default language
+        }
+
+        updateIncomeTypeDisplay(); // Display correct fields based on loaded income type
+        calculateNetSalary(); // ロード後に計算を実行
+      }
+
+      // ローカルストレージに値を保存
+      function saveToLocalStorage() {
+        localStorage.setItem("grossSalary", grossSalaryInput.value);
+        localStorage.setItem("age", ageInput.value);
+        localStorage.setItem("incomeType", incomeTypeSelect.value);
+        localStorage.setItem("necessaryExpenses", necessaryExpensesInput.value);
+        localStorage.setItem("language", languageSelect.value);
+      }
+
+      // Update gross salary label text based on income type
+      function updateGrossSalaryLabel() {
+        const selectedIncomeType = incomeTypeSelect.value;
+        if (selectedIncomeType === "employee") {
+          grossSalaryLabel.textContent =
+            translations[currentLang]["grossSalary.label.employee"];
+        } else {
+          // self_employed
+          grossSalaryLabel.textContent =
+            translations[currentLang]["grossSalary.label.self_employed"];
+        }
+      }
+
+      // Toggle necessary expenses input visibility
+      function updateIncomeTypeDisplay() {
+        const selectedIncomeType = incomeTypeSelect.value;
+        if (selectedIncomeType === "self_employed") {
+          necessaryExpensesGroup.classList.remove("hidden");
+        } else {
+          necessaryExpensesGroup.classList.add("hidden");
+          necessaryExpensesInput.value = ""; // Clear expenses if switching to employee
+        }
+        updateGrossSalaryLabel(); // Update label when type changes
+        calculateNetSalary(); // Recalculate when type changes
+      }
+
+      // 手取り額計算関数
+      function calculateNetSalary() {
+        let grossIncome = parseFloat(grossSalaryInput.value) || 0; // 額面給与または売上
+        let age = parseInt(ageInput.value) || 0;
+        const incomeType = incomeTypeSelect.value;
+        let necessaryExpenses =
+          incomeType === "self_employed"
+            ? parseFloat(necessaryExpensesInput.value) || 0
+            : 0;
+
+        // 月額を年額に変換
+        let annualGrossIncome = grossIncome * 12;
+        let annualNecessaryExpenses = necessaryExpenses * 12;
+
+        let totalDeductions = 0;
+        let deductionDetailsHtml = "";
+
+        // 所得税・住民税の計算基礎となる所得
+        let taxableIncomeForTax = 0; // 所得税・住民税用の課税所得
+
+        // 控除額の内訳
+        let healthInsurance = 0;
+        let pensionInsurance = 0;
+        let employmentInsurance = 0;
+        let longTermCareInsurance = 0; // 介護保険料 (給与所得者の場合)
+        let nationalHealthInsurance = 0; // 国民健康保険料 (事業所得者の場合)
+        let nationalPension = 0; // 国民年金保険料 (事業所得者の場合)
+        let incomeTaxMonthly = 0;
+        let residentTaxMonthly = 0;
+
+        // 基礎控除（年額） - 給与所得・事業所得共通
+        const BASIC_DEDUCTION_ANNUAL = 480000;
+
+        if (incomeType === "employee") {
+          // 給与所得者の計算
+          // 1. 社会保険料計算（月額基準）
+          const HEALTH_INSURANCE_RATE = 0.05; // 健康保険料率（おおよその労働者負担分）
+          const PENSION_INSURANCE_RATE = 0.0915; // 厚生年金保険料率（労働者負担分、2024年基準）
+          const EMPLOYMENT_INSURANCE_RATE = 0.003; // 雇用保険料率（労働者負担分、2024年基準）
+          const LONG_TERM_CARE_INSURANCE_RATE = 0.0082; // 介護保険料率（2024年基準、満40歳以上）
+
+          healthInsurance = Math.floor(grossIncome * HEALTH_INSURANCE_RATE);
+          pensionInsurance = Math.floor(grossIncome * PENSION_INSURANCE_RATE);
+          employmentInsurance = Math.floor(
+            grossIncome * EMPLOYMENT_INSURANCE_RATE
+          );
+
+          if (age >= 40) {
+            longTermCareInsurance = Math.floor(
+              grossIncome * LONG_TERM_CARE_INSURANCE_RATE
+            );
+          }
+
+          let socialInsuranceTotal =
+            healthInsurance +
+            pensionInsurance +
+            employmentInsurance +
+            longTermCareInsurance;
+          totalDeductions += socialInsuranceTotal;
+
+          // 給与所得控除を考慮した課税所得
+          // 給与所得控除額の簡易計算 (実際の控除額は給与によって細かく規定されるが、ここでは概算)
+          let salaryDeductionAnnual = 0;
+          if (annualGrossIncome <= 1625000) salaryDeductionAnnual = 550000;
+          else if (annualGrossIncome <= 1800000)
+            salaryDeductionAnnual = annualGrossIncome * 0.4 - 100000;
+          else if (annualGrossIncome <= 3600000)
+            salaryDeductionAnnual = annualGrossIncome * 0.3 + 80000;
+          else if (annualGrossIncome <= 6600000)
+            salaryDeductionAnnual = annualGrossIncome * 0.2 + 440000;
+          else if (annualGrossIncome <= 8500000)
+            salaryDeductionAnnual = annualGrossIncome * 0.1 + 1100000;
+          else salaryDeductionAnnual = 1950000; // 上限
+
+          // 課税所得 = 年間額面給与 - 給与所得控除 - 社会保険料控除 - 基礎控除
+          taxableIncomeForTax =
+            annualGrossIncome -
+            salaryDeductionAnnual -
+            socialInsuranceTotal * 12 -
+            BASIC_DEDUCTION_ANNUAL;
+          if (taxableIncomeForTax < 0) taxableIncomeForTax = 0;
+
+          deductionDetailsHtml += `<li><span class="font-semibold text-gray-700">${
+            translations[currentLang]["deductions.socialInsuranceTotal"]
+          }</span> <span class="ml-2">${socialInsuranceTotal.toLocaleString(
+            "ja-JP"
+          )} 円</span></li>`;
+          deductionDetailsHtml += `<li class="pl-4 text-gray-600"><span class="font-medium">${
+            translations[currentLang]["deductions.healthInsurance"]
+          }</span> <span class="ml-2">${healthInsurance.toLocaleString(
+            "ja-JP"
+          )} 円</span></li>`;
+          deductionDetailsHtml += `<li class="pl-4 text-gray-600"><span class="font-medium">${
+            translations[currentLang]["deductions.pensionInsurance"]
+          }</span> <span class="ml-2">${pensionInsurance.toLocaleString(
+            "ja-JP"
+          )} 円</span></li>`;
+          deductionDetailsHtml += `<li class="pl-4 text-gray-600"><span class="font-medium">${
+            translations[currentLang]["deductions.employmentInsurance"]
+          }</span> <span class="ml-2">${employmentInsurance.toLocaleString(
+            "ja-JP"
+          )} 円</span></li>`;
+          if (age >= 40) {
+            deductionDetailsHtml += `<li class="pl-4 text-gray-600"><span class="font-medium">${
+              translations[currentLang]["deductions.longTermCareInsurance"]
+            }</span> <span class="ml-2">${longTermCareInsurance.toLocaleString(
+              "ja-JP"
+            )} 円</span></li>`;
+          }
+        } else {
+          // incomeType === 'self_employed'
+          // 事業所得者（個人事業主）の計算
+          // 課税所得 = (年間売上 - 年間必要経費 - 基礎控除)
+          taxableIncomeForTax =
+            annualGrossIncome -
+            annualNecessaryExpenses -
+            BASIC_DEDUCTION_ANNUAL;
+          if (taxableIncomeForTax < 0) taxableIncomeForTax = 0;
+
+          // 1. 国民年金保険料（月額） - 固定額
+          const NATIONAL_PENSION_MONTHLY = 16980; // 2024年基準、変更される可能性あり
+          nationalPension = NATIONAL_PENSION_MONTHLY;
+          totalDeductions += nationalPension;
+
+          // 2. 国民健康保険料（月額） - 非常に複雑なため、ここでは簡略化された推定値を使用
+          // 所得割率と均等割額は市区町村により大きく異なる
+          const NHI_INCOME_RATE_MEDICAL = 0.07; // 所得割（医療分）の簡易率
+          const NHI_INCOME_RATE_SUPPORT = 0.02; // 所得割（後期高齢者支援金分）の簡易率
+          const NHI_INCOME_RATE_LTC = 0.0179; // 所得割（介護分、40歳以上）の簡易率
+          const NHI_FLAT_ANNUAL = 50000; // 均等割（年間、おおよそ）- 世帯・人数により変動
+
+          let annualNhiIncomeBased = Math.max(
+            0,
+            annualGrossIncome - annualNecessaryExpenses - BASIC_DEDUCTION_ANNUAL
+          ); // 国保計算用の所得（簡易）
+
+          let nhiMedical = Math.floor(
+            annualNhiIncomeBased * NHI_INCOME_RATE_MEDICAL
+          );
+          let nhiSupport = Math.floor(
+            annualNhiIncomeBased * NHI_INCOME_RATE_SUPPORT
+          );
+          let nhiLTC = 0;
+
+          if (age >= 40) {
+            nhiLTC = Math.floor(annualNhiIncomeBased * NHI_INCOME_RATE_LTC);
+          }
+
+          nationalHealthInsurance = Math.floor(
+            (nhiMedical + nhiSupport + nhiLTC + NHI_FLAT_ANNUAL) / 12
+          );
+          totalDeductions += nationalHealthInsurance;
+
+          deductionDetailsHtml += `<li><span class="font-semibold text-gray-700">${
+            translations[currentLang]["deductions.nationalPension"]
+          }</span> <span class="ml-2">${nationalPension.toLocaleString(
+            "ja-JP"
+          )} 円</span></li>`;
+          deductionDetailsHtml += `<li><span class="font-semibold text-gray-700">${
+            translations[currentLang]["deductions.nationalHealthInsurance"]
+          }</span> <span class="ml-2">${nationalHealthInsurance.toLocaleString(
+            "ja-JP"
+          )} 円</span></li>`;
+        }
+
+        // 共通の税金計算
+        // 2. 所得税計算（月額基準）
+        let incomeTaxAnnual = 0;
+        // 簡易 所得税率（累進課税）
+        if (taxableIncomeForTax <= 1950000) {
+          incomeTaxAnnual = taxableIncomeForTax * 0.05;
+        } else if (taxableIncomeForTax <= 3300000) {
+          incomeTaxAnnual = taxableIncomeForTax * 0.1 - 97500;
+        } else if (taxableIncomeForTax <= 6950000) {
+          incomeTaxAnnual = taxableIncomeForTax * 0.2 - 427500;
+        } else if (taxableIncomeForTax <= 9000000) {
+          incomeTaxAnnual = taxableIncomeForTax * 0.23 - 636000;
+        } else if (taxableIncomeForTax <= 18000000) {
+          incomeTaxAnnual = taxableIncomeForTax * 0.33 - 1536000;
+        } else if (taxableIncomeForTax <= 40000000) {
+          incomeTaxAnnual = taxableIncomeForTax * 0.4 - 2796000;
+        } else {
+          incomeTaxAnnual = taxableIncomeForTax * 0.45 - 4796000;
+        }
+        if (incomeTaxAnnual < 0) incomeTaxAnnual = 0;
+
+        incomeTaxMonthly = Math.floor(incomeTaxAnnual / 12);
+        totalDeductions += incomeTaxMonthly;
+
+        // 3. 住民税計算（月額基準）
+        // 住民税は前年所得に基づくため、ここでは簡易的な計算。
+        // 課税所得の約10%（都道府県民税4%、市町村民税6%）+ 均等割（約5,000円/年）
+        const RESIDENT_TAX_RATE = 0.1; // 住民税率（おおよそ）
+        const RESIDENT_TAX_FLAT_ANNUAL = 5000; // 均等割（年間）
+
+        let residentTaxAnnual =
+          taxableIncomeForTax * RESIDENT_TAX_RATE + RESIDENT_TAX_FLAT_ANNUAL;
+        if (residentTaxAnnual < 0) residentTaxAnnual = 0;
+
+        residentTaxMonthly = Math.floor(residentTaxAnnual / 12);
+        totalDeductions += residentTaxMonthly;
+
+        let netSalary = grossIncome - totalDeductions;
+        if (netSalary < 0) netSalary = 0; // 手取り額がマイナスになる場合を防止
+
+        // 結果を更新
+        netSalarySpan.textContent = netSalary.toLocaleString("ja-JP") + " 円";
+        totalDeductionsSpan.textContent =
+          totalDeductions.toLocaleString("ja-JP") + " 円";
+
+        deductionDetailsHtml += `<li><span class="font-semibold text-gray-700">${
+          translations[currentLang]["deductions.incomeTax"]
+        }</span> <span class="ml-2">${incomeTaxMonthly.toLocaleString(
+          "ja-JP"
+        )} 円</span></li>`;
+        deductionDetailsHtml += `<li><span class="font-semibold text-gray-700">${
+          translations[currentLang]["deductions.residentTax"]
+        }</span> <span class="ml-2">${residentTaxMonthly.toLocaleString(
+          "ja-JP"
+        )} 円</span></li>`;
+
+        deductionsList.innerHTML = deductionDetailsHtml;
+
+        saveToLocalStorage(); // 計算後にローカルストレージに保存
+      }
+
+      // イベントリスナー
+      languageSelect.addEventListener("change", (event) => {
+        applyLanguage(event.target.value);
+        saveToLocalStorage();
+      });
+      incomeTypeSelect.addEventListener("change", updateIncomeTypeDisplay);
+      grossSalaryInput.addEventListener("input", calculateNetSalary);
+      necessaryExpensesInput.addEventListener("input", calculateNetSalary);
+      ageInput.addEventListener("input", calculateNetSalary);
+
+      // ページロード時にローカルストレージから値ロードおよび計算・表示
+      window.addEventListener("load", loadFromLocalStorage);
+    </script>
+  </body>
+</html>
